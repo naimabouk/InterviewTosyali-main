@@ -1,0 +1,2 @@
+# InterviewTosyali-main
+I used MySql for the database I used Entity Framework Core for the ORM to access the db. I used the WPF Framework for the user interface. I used the Prism Framework to do good design using the MVVM architectural pattern. I used the C# programming since I wanted to build a desktop app and C# has the best GUI libraries. Naimaq.PNG  To run the project, you will need to restore all the nuget dependencies by running dotnet restore inside the project 
