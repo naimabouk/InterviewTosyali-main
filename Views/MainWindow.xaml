@@ -1,0 +1,71 @@
+﻿<Window x:Class="JobInterview.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes" WindowStartupLocation="CenterScreen"
+        AllowsTransparency="True" WindowStyle="None" 
+        xmlns:prism="http://prismlibrary.com/"
+        prism:ViewModelLocator.AutoWireViewModel="True"
+        xmlns:local="clr-namespace:JobInterview"
+        Title="Exchange Rates" Height="300" Width="450">
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.DeepPurple.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+
+
+    <Border CornerRadius="40">
+        <Border.Background>
+            <ImageBrush ImageSource="/Views/logo.png"/>
+        </Border.Background>
+        <Grid Margin="20">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <ItemsControl ItemsSource="{Binding Rates}" Grid.IsSharedSizeScope="True"  Margin="0, 0, 10, 0">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border Background="Azure" Height="60" CornerRadius="30"  Margin="10" x:Name="Border" BorderThickness="2, 2, 2, 2"   BorderBrush="{DynamicResource MaterialDesignDivider}">
+                            <Grid Margin="10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="20"/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+
+                                <TextBlock >Date</TextBlock>
+                                <TextBlock Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Center" >Range</TextBlock>
+                                <TextBlock Grid.Column="3" >Currency</TextBlock>
+
+                                <TextBlock HorizontalAlignment="Center" Grid.Row="1" Text="{Binding Date}"/>
+                                <TextBlock Grid.Row="1" HorizontalAlignment="Center" Grid.Column="1" Text="{Binding From}" />
+                                <TextBlock Grid.Row="1" HorizontalAlignment="Center" Grid.Column="2" Text="{Binding To}"/>
+                                <TextBlock Grid.Row="1" HorizontalAlignment="Center" Grid.Column="3" Text="{Binding Currency}"/>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+
+            <Button Grid.Row="1" Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                    Width="100"  Content="Refresh" Command="{Binding RefreshCommand}" ></Button>
+        </Grid>
+    </Border>
+</Window>
